@@ -198,3 +198,43 @@
 - Given: updated `.blend` と review render の保存まで成功している
 - When: `build-vrm-base` が終了する
 - Then: `run_id`、保存先、updated `.blend`、review render を表示し、終了コード 0 で終了する
+
+## SP-AMP-001 `apply-motion-preview`
+
+### Public alias
+- `kyarakuri-apply-motion-preview` は repo-local wrapper として同じ Blender motion preview 処理を呼ぶ
+
+### 1. 入力
+- Given: ユーザーが `.blend` path と `BVH` motion file を指定し、必要に応じて config path を指定する
+- When: `apply-motion-preview` が起動する
+- Then: `.blend`、`BVH`、config、出力先を解決する
+
+### 2. Blender 実行
+- Given: Blender executable、source `.blend`、`BVH` motion file が利用可能である
+- When: `apply-motion-preview` が処理を開始する
+- Then: Blender background mode を起動し、bundled Blender script に引数を渡して scene を処理する
+
+### 3. motion 適用
+- Given: Blender script が `BVH` を import できる
+- When: scene 内の armature を更新する
+- Then: import した action を最初の armature object に割り当て、action の開始フレームを preview frame に使う
+
+### 4. preview render
+- Given: Blender script が scene を保存できる
+- When: `apply-motion-preview` が preview render を生成する
+- Then: camera / light を補い、静止画 1 枚を render する
+
+### 5. 成果物保存
+- Given: Blender background mode の処理が成功している
+- When: `apply-motion-preview` が保存処理を行う
+- Then: `output_dir/motion/<run-id>/` に更新済み `.blend`、`preview.png`、Blender result JSON を保存し、`output_dir/logs/` に metadata を保存する
+
+### 6. 失敗時の終了
+- Given: `.blend` 不足、`BVH` 不足、Blender path 不正、Blender 実行失敗、preview render 不足のいずれかがある
+- When: `apply-motion-preview` が終了する
+- Then: 次の行動が分かるメッセージを表示し、非 0 で終了する
+
+### 7. 成功時の終了
+- Given: updated `.blend` と preview render の保存まで成功している
+- When: `apply-motion-preview` が終了する
+- Then: `run_id`、保存先、updated `.blend`、preview render を表示し、終了コード 0 で終了する

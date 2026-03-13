@@ -13,7 +13,6 @@
   - `kyarakuri-generate-base-image`
   - `kyarakuri-generate-expressions`
   - `kyarakuri-build-vrm`
-- planned public commands:
   - `kyarakuri-apply-motion-preview`
 
 ## 機能一覧
@@ -37,6 +36,10 @@
   - 名称: `build-vrm-base`
   - 目的: Blender background mode で既存 `.blend` を処理し、更新済み `.blend` と review render を保存する。
   - 状態: 実装済み / archive 済み
+- SP-AMP-001:
+  - 名称: `apply-motion-preview`
+  - 目的: Blender background mode で既存 `.blend` に既存 `BVH` motion を適用し、更新済み `.blend` と preview render を保存する。
+  - 状態: 実装済み / archive 済み
 
 ## Phase 1 の到達点
 - `doctor`: 実装済み
@@ -46,7 +49,7 @@
 
 ## Phase 2 の現在地
 - `build-vrm-base`: 実装済み
-- `apply-motion-preview`: 未実装
+- `apply-motion-preview`: 実装済み
 
 ## 非ゴール
 - ComfyUI や Blender 本体のインストール代行

@@ -10,6 +10,8 @@
 - [x] `DR-20260313-repo-local-kyarakuri-skill-pack` を archive まで完了する
 - [x] `DR-20260313-build-vrm-base` を起票する
 - [x] `DR-20260313-build-vrm-base` を archive まで完了する
+- [x] `DR-20260313-apply-motion-preview` を起票する
+- [x] `DR-20260313-apply-motion-preview` を archive まで完了する
 - [ ] 次の active delta を起票する
 - [ ] 同一 plan item が 3 delta 以上になったら review delta を検討する
 - [ ] REVIEW 以外の delta が 5 件続いたら review delta を検討する
@@ -31,6 +33,7 @@
 - [x] `DR-20260313-generate-expression-sheet`: ベース画像から複数表情を生成し、expression ごとの画像群と実行メタ保存を実装し archive した
 - [x] `DR-20260313-repo-local-kyarakuri-skill-pack`: `kyarakuri-comfy-blender-vrm` を repo-local wrapper skill pack として追加し、public name で既存実装を呼べるようにして archive した
 - [x] `DR-20260313-build-vrm-base`: Blender background mode で `.blend` を処理し、updated `.blend` と review render を保存する最小 build-vrm を実装して archive した
+- [x] `DR-20260313-apply-motion-preview`: Blender background mode で `.blend` に `BVH` motion を適用し、updated `.blend` と preview render を保存する最小 motion preview を実装して archive した
 - [x] `DR-20260313-phase1-review`: review checklist と validator full を実行し、Phase 1 review を PASS で archive した
 
 # archive index

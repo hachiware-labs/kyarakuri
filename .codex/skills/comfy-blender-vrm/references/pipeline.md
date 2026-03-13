@@ -29,3 +29,5 @@
 - `generate-expression-sheet` stores run metadata under `outputs/logs/`.
 - `build-vrm-base` opens an existing `.blend` in Blender background mode and optionally applies one texture image to the first mesh material.
 - `build-vrm-base` stores the updated `.blend`, one review render, and run metadata under `outputs/blender/<run-id>/` and `outputs/logs/`.
+- `apply-motion-preview` opens an existing `.blend`, imports one BVH motion, assigns it to the first armature, and renders one preview frame.
+- `apply-motion-preview` stores the updated `.blend`, one preview render, and run metadata under `outputs/motion/<run-id>/` and `outputs/logs/`.

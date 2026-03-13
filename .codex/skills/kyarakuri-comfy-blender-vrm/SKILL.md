@@ -7,13 +7,14 @@ Repo-local skill pack for testing the public `kyarakuri-*` command names before 
 - `kyarakuri-generate-base-image`: implemented via wrapper
 - `kyarakuri-generate-expressions`: implemented via wrapper
 - `kyarakuri-build-vrm`: implemented via wrapper
-- `kyarakuri-apply-motion-preview`: planned
+- `kyarakuri-apply-motion-preview`: implemented via wrapper
 
 ## Command mapping
 - `kyarakuri-prepare-environment` -> existing `doctor`
 - `kyarakuri-generate-base-image` -> existing `generate-character-from-brief`
 - `kyarakuri-generate-expressions` -> existing `generate-expression-sheet`
 - `kyarakuri-build-vrm` -> existing `build-vrm-base`
+- `kyarakuri-apply-motion-preview` -> existing `apply-motion-preview`
 
 ## Usage
 ```powershell
@@ -25,6 +26,8 @@ python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expressions.py
 python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expressions.py --workflow path\\to\\expressions.api.json --base-image path\\to\\character.png --character-prompt "same anime character" --expressions neutral,smile,angry --seed 12345
 python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm.py --blend-file path\\to\\base.blend
 python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm.py --blend-file path\\to\\base.blend --texture-image path\\to\\texture.png --output-name review-pass
+python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/apply_motion_preview.py --blend-file path\\to\\base.blend --motion-file path\\to\\idle.bvh
+python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/apply_motion_preview.py --blend-file path\\to\\base.blend --motion-file path\\to\\idle.bvh --output-name idle-preview
 ```
 
 ## Defaults
@@ -36,4 +39,4 @@ python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm.py --blend-fi
 - Pipeline notes: `./references/pipeline.md`
 - Character brief schema: `./references/character_brief.md`
 - Workflow notes: `./workflows/README.md`
-- Latest delta: `docs/delta/DR-20260313-build-vrm-base.md`
+- Latest delta: `docs/delta/DR-20260313-apply-motion-preview.md`

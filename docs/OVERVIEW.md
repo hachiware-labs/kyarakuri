@@ -22,13 +22,13 @@ plan.md の archive は計画タスクの完了記録であり、delta archive�
 - 現在フェーズ: P0
 - 今回スコープ（1〜5行）:
   - Active Delta: なし
-  - 直近完了: `DR-20260313-build-vrm-base` を archive 済み
-  - `build-vrm-base` と `kyarakuri-build-vrm` が最小実装済み
-  - repo-local public command は environment / base image / expressions / build vrm まで揃った
-  - 次の seed は `apply-motion-preview` request
+  - 直近完了: `DR-20260313-apply-motion-preview` を archive 済み
+  - repo-local public command は environment / base image / expressions / build vrm / motion preview まで揃った
+  - `apply-motion-preview` と `kyarakuri-apply-motion-preview` が最小実装済み
+  - 次の seed は `review delta` または提供用 skill への移行整理
 - 非ゴール（やらないこと）:
+  - FBX 対応、複雑な retargeting、動画出力
   - VRM 正式 export、rig 自動生成、shape key 自動作成
-  - motion preview の実装
   - 既存 skill pack の削除や全面 rename
 - 重要リンク:
   - concept: `./concept.md`

@@ -8,7 +8,7 @@ Local skill pack for character creation workflows driven by ComfyUI and Blender.
 - `generate-character-from-brief`: implemented
 - `generate-expression-sheet`: implemented
 - `build-vrm-base`: implemented
-- `apply-motion-preview`: planned
+- `apply-motion-preview`: implemented
 
 ## Purpose
 - Validate the local ComfyUI endpoint.
@@ -28,6 +28,8 @@ python .codex/skills/comfy-blender-vrm/scripts/generate_expression_sheet.py --wo
 python .codex/skills/comfy-blender-vrm/scripts/generate_expression_sheet.py --workflow path\\to\\expressions.api.json --base-image path\\to\\character.png --character-prompt "same anime character" --expressions neutral,smile,angry --seed 12345
 python .codex/skills/comfy-blender-vrm/scripts/build_vrm_base.py --blend-file path\\to\\base.blend
 python .codex/skills/comfy-blender-vrm/scripts/build_vrm_base.py --blend-file path\\to\\base.blend --texture-image path\\to\\texture.png --output-name review-pass
+python .codex/skills/comfy-blender-vrm/scripts/apply_motion_preview.py --blend-file path\\to\\base.blend --motion-file path\\to\\idle.bvh
+python .codex/skills/comfy-blender-vrm/scripts/apply_motion_preview.py --blend-file path\\to\\base.blend --motion-file path\\to\\idle.bvh --output-name idle-preview
 ```
 
 ## Defaults
@@ -38,4 +40,4 @@ python .codex/skills/comfy-blender-vrm/scripts/build_vrm_base.py --blend-file pa
 - Pipeline notes: `./references/pipeline.md`
 - Character brief schema: `./references/character_brief.md`
 - Workflow notes: `./workflows/README.md`
-- Latest delta: `docs/delta/DR-20260313-build-vrm-base.md`
+- Latest delta: `docs/delta/DR-20260313-apply-motion-preview.md`
