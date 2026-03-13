@@ -6,13 +6,14 @@ Repo-local skill pack for testing the public `kyarakuri-*` command names before 
 - `kyarakuri-prepare-environment`: implemented via wrapper
 - `kyarakuri-generate-base-image`: implemented via wrapper
 - `kyarakuri-generate-expressions`: implemented via wrapper
-- `kyarakuri-build-vrm`: planned
+- `kyarakuri-build-vrm`: implemented via wrapper
 - `kyarakuri-apply-motion-preview`: planned
 
 ## Command mapping
 - `kyarakuri-prepare-environment` -> existing `doctor`
 - `kyarakuri-generate-base-image` -> existing `generate-character-from-brief`
 - `kyarakuri-generate-expressions` -> existing `generate-expression-sheet`
+- `kyarakuri-build-vrm` -> existing `build-vrm-base`
 
 ## Usage
 ```powershell
@@ -22,6 +23,8 @@ python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_base_image.py 
 python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_base_image.py --workflow path\\to\\character.api.json --brief-file path\\to\\brief.json --seed 12345
 python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expressions.py --workflow path\\to\\expressions.api.json --base-image path\\to\\character.png --character-prompt "same anime character"
 python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expressions.py --workflow path\\to\\expressions.api.json --base-image path\\to\\character.png --character-prompt "same anime character" --expressions neutral,smile,angry --seed 12345
+python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm.py --blend-file path\\to\\base.blend
+python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm.py --blend-file path\\to\\base.blend --texture-image path\\to\\texture.png --output-name review-pass
 ```
 
 ## Defaults
@@ -33,4 +36,4 @@ python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expressions.py
 - Pipeline notes: `./references/pipeline.md`
 - Character brief schema: `./references/character_brief.md`
 - Workflow notes: `./workflows/README.md`
-- Latest delta: `docs/delta/DR-20260313-repo-local-kyarakuri-skill-pack.md`
+- Latest delta: `docs/delta/DR-20260313-build-vrm-base.md`

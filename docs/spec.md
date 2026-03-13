@@ -158,3 +158,43 @@
 - Given: expression ごとの画像保存まで成功している
 - When: `generate-expression-sheet` が終了する
 - Then: `run_id`、保存先、expression 一覧を表示し、終了コード 0 で終了する
+
+## SP-BVB-001 `build-vrm-base`
+
+### Public alias
+- `kyarakuri-build-vrm` は repo-local wrapper として同じ Blender build 処理を呼ぶ
+
+### 1. 入力
+- Given: ユーザーが `.blend` path を指定し、必要に応じて texture image と config path を指定する
+- When: `build-vrm-base` が起動する
+- Then: `.blend`、texture image、config、出力先を解決する
+
+### 2. Blender 実行
+- Given: Blender executable と source `.blend` が利用可能である
+- When: `build-vrm-base` が処理を開始する
+- Then: Blender background mode を起動し、bundled Blender script に引数を渡して scene を処理する
+
+### 3. texture 適用
+- Given: texture image が指定されている
+- When: Blender script が scene を更新する
+- Then: 最初の mesh object の material に texture image を接続する
+
+### 4. review render
+- Given: Blender script が scene を保存できる
+- When: `build-vrm-base` が review render を生成する
+- Then: camera / light を補い、静止画 1 枚を render する
+
+### 5. 成果物保存
+- Given: Blender background mode の処理が成功している
+- When: `build-vrm-base` が保存処理を行う
+- Then: `output_dir/blender/<run-id>/` に更新済み `.blend`、`review.png`、Blender result JSON を保存し、`output_dir/logs/` に metadata を保存する
+
+### 6. 失敗時の終了
+- Given: `.blend` 不足、texture image 不足、Blender path 不正、Blender 実行失敗、review render 不足のいずれかがある
+- When: `build-vrm-base` が終了する
+- Then: 次の行動が分かるメッセージを表示し、非 0 で終了する
+
+### 7. 成功時の終了
+- Given: updated `.blend` と review render の保存まで成功している
+- When: `build-vrm-base` が終了する
+- Then: `run_id`、保存先、updated `.blend`、review render を表示し、終了コード 0 で終了する

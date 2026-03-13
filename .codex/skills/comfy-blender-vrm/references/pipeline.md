@@ -27,3 +27,5 @@
 - `generate-expression-sheet` uploads one base image and reuses it across multiple expression prompts.
 - `generate-expression-sheet` derives per-expression seeds from a base seed and stores outputs under `outputs/expressions/<run-id>/<expression>/`.
 - `generate-expression-sheet` stores run metadata under `outputs/logs/`.
+- `build-vrm-base` opens an existing `.blend` in Blender background mode and optionally applies one texture image to the first mesh material.
+- `build-vrm-base` stores the updated `.blend`, one review render, and run metadata under `outputs/blender/<run-id>/` and `outputs/logs/`.

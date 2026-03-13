@@ -12,8 +12,8 @@
   - `kyarakuri-prepare-environment`
   - `kyarakuri-generate-base-image`
   - `kyarakuri-generate-expressions`
-- planned public commands:
   - `kyarakuri-build-vrm`
+- planned public commands:
   - `kyarakuri-apply-motion-preview`
 
 ## 機能一覧
@@ -33,12 +33,20 @@
   - 名称: `generate-expression-sheet`
   - 目的: ベース画像から複数表情を生成し、expression ごとの画像群と再現メタを保存する。
   - 状態: 実装済み / archive 済み
+- SP-BVB-001:
+  - 名称: `build-vrm-base`
+  - 目的: Blender background mode で既存 `.blend` を処理し、更新済み `.blend` と review render を保存する。
+  - 状態: 実装済み / archive 済み
 
 ## Phase 1 の到達点
 - `doctor`: 実装済み
 - `generate-character-sheet`: 実装済み
 - `generate-character-from-brief`: 実装済み
 - `generate-expression-sheet`: 実装済み
+
+## Phase 2 の現在地
+- `build-vrm-base`: 実装済み
+- `apply-motion-preview`: 未実装
 
 ## 非ゴール
 - ComfyUI や Blender 本体のインストール代行

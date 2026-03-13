@@ -27,11 +27,13 @@
   - `python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/prepare_environment.py`
   - `python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_base_image.py --workflow <path> [--brief-file <path>]`
   - `python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expressions.py --workflow <path> --base-image <path> --character-prompt <text>`
+  - `python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm.py --blend-file <path> [--texture-image <path>]`
   - `python .codex/skills/comfy-blender-vrm/scripts/doctor.py`
   - `python .codex/skills/comfy-blender-vrm/scripts/doctor.py --config <path>`
   - `python .codex/skills/comfy-blender-vrm/scripts/generate_character_sheet.py --workflow <path> --character-prompt <text>`
   - `python .codex/skills/comfy-blender-vrm/scripts/generate_character_from_brief.py --workflow <path> [--brief-file <path>]`
   - `python .codex/skills/comfy-blender-vrm/scripts/generate_expression_sheet.py --workflow <path> --base-image <path> --character-prompt <text>`
+  - `python .codex/skills/comfy-blender-vrm/scripts/build_vrm_base.py --blend-file <path> [--texture-image <path>]`
 - Config keys:
   - `comfyui_url`
   - `blender_path`
@@ -47,6 +49,7 @@
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/prepare_environment.py`
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_base_image.py`
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expressions.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm.py`
   - `--config` 未指定時に `config/kyarakuri-comfy-blender-vrm.json` を注入し、既存実装へ委譲する
 - Repo-local config:
   - `config/kyarakuri-comfy-blender-vrm.json`
@@ -85,6 +88,17 @@
   - `.codex/skills/comfy-blender-vrm/workflows/README.md`
   - `expression_name` と `base_image*` placeholder を含む workflow 契約を定義する
 
+## `build-vrm-base` 構成
+- CLI/application:
+  - `.codex/skills/comfy-blender-vrm/scripts/build_vrm_base.py`
+  - config 読込、`.blend` / texture 解決、run dir 作成、Blender background process 起動、metadata 保存を担当する
+- Blender script:
+  - `.codex/skills/comfy-blender-vrm/blender/build_vrm_base.py`
+  - scene 内の first mesh material 更新、camera / light 補完、updated `.blend` 保存、review render 出力を担当する
+- Public wrapper:
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm.py`
+  - repo-local public 名 `kyarakuri-build-vrm` と既定 config 注入を担当する
+
 ## 状態遷移
 - config load
 - setting resolve
@@ -104,6 +118,9 @@
 - base image upload
 - per-expression loop
 - per-expression save
+- blender subprocess launch
+- blend save
+- review render save
 
 ## エラー設計
 - 設定ファイル不足
@@ -120,3 +137,7 @@
 - 未解決プレースホルダ
 - prompt API 失敗
 - image download 失敗
+- `.blend` 不足
+- texture image 不足
+- Blender 実行失敗
+- review render 不足

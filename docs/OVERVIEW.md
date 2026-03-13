@@ -22,14 +22,14 @@ plan.md の archive は計画タスクの完了記録であり、delta archive�
 - 現在フェーズ: P0
 - 今回スコープ（1〜5行）:
   - Active Delta: なし
-  - 直近完了: `DR-20260313-repo-local-kyarakuri-skill-pack` を archive 済み
-  - `kyarakuri-comfy-blender-vrm` が repo-local wrapper skill pack として追加済み
-  - `kyarakuri-prepare-environment`、`kyarakuri-generate-base-image`、`kyarakuri-generate-expressions` が利用可能
-  - 次の seed は `build-vrm-base` request または配布用 skill への移行 delta
+  - 直近完了: `DR-20260313-build-vrm-base` を archive 済み
+  - `build-vrm-base` と `kyarakuri-build-vrm` が最小実装済み
+  - repo-local public command は environment / base image / expressions / build vrm まで揃った
+  - 次の seed は `apply-motion-preview` request
 - 非ゴール（やらないこと）:
-  - `kyarakuri-build-vrm` と `kyarakuri-apply-motion-preview` の本実装
+  - VRM 正式 export、rig 自動生成、shape key 自動作成
+  - motion preview の実装
   - 既存 skill pack の削除や全面 rename
-  - user skill / 提供可能 skill への移動
 - 重要リンク:
   - concept: `./concept.md`
   - spec: `./spec.md`
