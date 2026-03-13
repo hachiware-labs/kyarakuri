@@ -22,9 +22,9 @@ plan.md の archive は計画タスクの完了記録であり、delta archive�
 - 現在フェーズ: P0
 - 今回スコープ（1〜5行）:
   - Active Delta: なし
-  - 直近完了: `DR-20260313-apply-motion-preview` を archive 済み
-  - repo-local public command は environment / base image / expressions / build vrm / motion preview まで揃った
-  - `apply-motion-preview` と `kyarakuri-apply-motion-preview` が最小実装済み
+  - 直近完了: `DR-20260313-align-comfyui-url-8000` を archive 済み
+  - internal / repo-local の既定 config は `http://127.0.0.1:8000` に揃った
+  - `doctor` と `kyarakuri-prepare-environment` は現行ローカル環境で PASS する
   - 次の seed は `review delta` または提供用 skill への移行整理
 - 非ゴール（やらないこと）:
   - FBX 対応、複雑な retargeting、動画出力

@@ -12,6 +12,8 @@
 - [x] `DR-20260313-build-vrm-base` を archive まで完了する
 - [x] `DR-20260313-apply-motion-preview` を起票する
 - [x] `DR-20260313-apply-motion-preview` を archive まで完了する
+- [x] `DR-20260313-align-comfyui-url-8000` を起票する
+- [x] `DR-20260313-align-comfyui-url-8000` を archive まで完了する
 - [ ] 次の active delta を起票する
 - [ ] 同一 plan item が 3 delta 以上になったら review delta を検討する
 - [ ] REVIEW 以外の delta が 5 件続いたら review delta を検討する
@@ -34,6 +36,7 @@
 - [x] `DR-20260313-repo-local-kyarakuri-skill-pack`: `kyarakuri-comfy-blender-vrm` を repo-local wrapper skill pack として追加し、public name で既存実装を呼べるようにして archive した
 - [x] `DR-20260313-build-vrm-base`: Blender background mode で `.blend` を処理し、updated `.blend` と review render を保存する最小 build-vrm を実装して archive した
 - [x] `DR-20260313-apply-motion-preview`: Blender background mode で `.blend` に `BVH` motion を適用し、updated `.blend` と preview render を保存する最小 motion preview を実装して archive した
+- [x] `DR-20260313-align-comfyui-url-8000`: internal / repo-local の既定 config の `comfyui_url` を `http://127.0.0.1:8000` に揃え、環境確認コマンドが PASS する状態へ修正した
 - [x] `DR-20260313-phase1-review`: review checklist と validator full を実行し、Phase 1 review を PASS で archive した
 
 # archive index
