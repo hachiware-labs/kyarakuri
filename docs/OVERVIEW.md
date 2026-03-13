@@ -22,10 +22,11 @@ plan.md の archive は計画タスクの完了記録であり、delta archive�
 - 現在フェーズ: P0
 - 今回スコープ（1〜5行）:
   - Active Delta: なし
-  - 直近完了: `DR-20260313-align-comfyui-url-8000` を archive 済み
+  - 直近完了: `DR-20260313-real-comfyui-smoke-policy` を archive 済み
   - internal / repo-local の既定 config は `http://127.0.0.1:8000` に揃った
   - `doctor` と `kyarakuri-prepare-environment` は現行ローカル環境で PASS する
-  - 次の seed は `review delta` または提供用 skill への移行整理
+  - 実 ComfyUI は主要機能の smoke verify に使う方針を正本 docs に反映した
+  - 次の seed は `DR-20260313-real-comfyui-smoke-verify` または `review delta`
 - 非ゴール（やらないこと）:
   - FBX 対応、複雑な retargeting、動画出力
   - VRM 正式 export、rig 自動生成、shape key 自動作成
@@ -40,6 +41,11 @@ plan.md の archive は計画タスクの完了記録であり、delta archive�
 
 ## レビューゲート（必ず止まる）
 共通原則：**自己レビュー → 完成と判断できたらユーザー確認 → 合意で次へ**
+
+## Verify 方針
+- 日常 verify は mock ComfyUI / fake Blender を主力に使う。
+- 実 ComfyUI は主要機能が使えることを確認する smoke verify に使う。
+- 実 ComfyUI smoke verify は repo-local skill を提供用 skill へ移す前の最終確認として扱ってよい。
 
 ---
 

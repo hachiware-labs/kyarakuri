@@ -160,3 +160,11 @@
 - Blender 実行失敗
 - review render 不足
 - preview render 不足
+
+## Verify Strategy
+- 主力 verify:
+  - mock ComfyUI / fake Blender を使い、差分単位の成功系と失敗系を再現可能に確認する
+- smoke verify:
+  - 実 ComfyUI を使い、主要機能が現行ローカル環境で通ることを確認する
+  - 初期対象は `generate-character-from-brief` と `generate-expression-sheet` を想定する
+  - 実 ComfyUI smoke verify の固定 workflow / fixed prompt / 出力確認は follow-up delta で定義する
