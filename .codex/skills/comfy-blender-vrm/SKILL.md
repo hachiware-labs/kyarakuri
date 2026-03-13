@@ -5,6 +5,7 @@ Local skill pack for character creation workflows driven by ComfyUI and Blender.
 ## Current scope
 - `doctor`: implemented
 - `generate-character-sheet`: implemented
+- `generate-character-from-brief`: implemented
 - `generate-expression-sheet`: implemented
 - `build-vrm-base`: planned
 - `apply-motion-preview`: planned
@@ -21,6 +22,8 @@ python .codex/skills/comfy-blender-vrm/scripts/doctor.py
 python .codex/skills/comfy-blender-vrm/scripts/doctor.py --config config/comfy-blender-vrm.json
 python .codex/skills/comfy-blender-vrm/scripts/generate_character_sheet.py --workflow path\\to\\character.api.json --character-prompt "front-facing anime character"
 python .codex/skills/comfy-blender-vrm/scripts/generate_character_sheet.py --workflow path\\to\\character.api.json --character-prompt "front-facing anime character" --reference-image path\\to\\ref.png --seed 12345
+python .codex/skills/comfy-blender-vrm/scripts/generate_character_from_brief.py --workflow path\\to\\character.api.json
+python .codex/skills/comfy-blender-vrm/scripts/generate_character_from_brief.py --workflow path\\to\\character.api.json --brief-file path\\to\\brief.json --seed 12345
 python .codex/skills/comfy-blender-vrm/scripts/generate_expression_sheet.py --workflow path\\to\\expressions.api.json --base-image path\\to\\character.png --character-prompt "same anime character" 
 python .codex/skills/comfy-blender-vrm/scripts/generate_expression_sheet.py --workflow path\\to\\expressions.api.json --base-image path\\to\\character.png --character-prompt "same anime character" --expressions neutral,smile,angry --seed 12345
 ```
@@ -31,5 +34,6 @@ python .codex/skills/comfy-blender-vrm/scripts/generate_expression_sheet.py --wo
 
 ## References
 - Pipeline notes: `./references/pipeline.md`
+- Character brief schema: `./references/character_brief.md`
 - Workflow notes: `./workflows/README.md`
-- Latest delta: `docs/delta/DR-20260313-generate-expression-sheet.md`
+- Latest delta: `docs/delta/DR-20260313-generate-character-from-brief.md`

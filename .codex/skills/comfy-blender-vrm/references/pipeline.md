@@ -3,6 +3,7 @@
 ## Phase 1
 - `doctor`
 - `generate-character-sheet`
+- `generate-character-from-brief`
 - `generate-expression-sheet`
 
 ## Phase 2
@@ -20,6 +21,9 @@
 - `generate-character-sheet` reads an API-format workflow JSON and submits it to ComfyUI.
 - `generate-character-sheet` supports placeholders for `character_prompt`, `seed`, `run_id`, and reference image values.
 - `generate-character-sheet` stores images under `outputs/character/<run-id>/` and metadata under `outputs/logs/`.
+- `generate-character-from-brief` collects a minimal character brief from interactive CLI input or a brief JSON file.
+- `generate-character-from-brief` synthesizes `character_prompt` and reuses the same generation path as `generate-character-sheet`.
+- `generate-character-from-brief` stores `brief.json` and `prompt-preview.txt` inside the generated character output directory.
 - `generate-expression-sheet` uploads one base image and reuses it across multiple expression prompts.
 - `generate-expression-sheet` derives per-expression seeds from a base seed and stores outputs under `outputs/expressions/<run-id>/<expression>/`.
 - `generate-expression-sheet` stores run metadata under `outputs/logs/`.

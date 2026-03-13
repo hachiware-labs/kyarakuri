@@ -1,0 +1,6 @@
+{
+  "comfyui_url": "http://127.0.0.1:8188",
+  "blender_path": "C:/Program Files/Blender Foundation/Blender 5.0/blender.exe",
+  "workflow_dir": "./.codex/skills/kyarakuri-comfy-blender-vrm/workflows",
+  "output_dir": "./outputs"
+}

@@ -22,12 +22,14 @@ plan.md の archive は計画タスクの完了記録であり、delta archive�
 - 現在フェーズ: P0
 - 今回スコープ（1〜5行）:
   - Active Delta: なし
-  - 直近完了: `DR-20260313-generate-expression-sheet` を archive 済み
-  - Phase 1 の `doctor` / `generate-character-sheet` / `generate-expression-sheet` が実装済み
-  - 次は review delta を検討するか、Phase 2 の `build-vrm-base` request を起票する段階
+  - 直近完了: `DR-20260313-repo-local-kyarakuri-skill-pack` を archive 済み
+  - `kyarakuri-comfy-blender-vrm` が repo-local wrapper skill pack として追加済み
+  - `kyarakuri-prepare-environment`、`kyarakuri-generate-base-image`、`kyarakuri-generate-expressions` が利用可能
+  - 次の seed は `build-vrm-base` request または配布用 skill への移行 delta
 - 非ゴール（やらないこと）:
-  - 画像生成、表情生成、VRM ベース構築、モーション適用の実装
-  - ComfyUI / Blender 本体のインストールや常駐制御の導入
+  - `kyarakuri-build-vrm` と `kyarakuri-apply-motion-preview` の本実装
+  - 既存 skill pack の削除や全面 rename
+  - user skill / 提供可能 skill への移動
 - 重要リンク:
   - concept: `./concept.md`
   - spec: `./spec.md`
