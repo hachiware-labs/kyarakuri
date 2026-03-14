@@ -7,18 +7,20 @@
 - `kyarakuri-build-vrm`
 - `kyarakuri-apply-motion-preview`
 
-## Wrapper contract
-- This skill pack is repo-local and delegates to the existing `.codex/skills/comfy-blender-vrm/` implementation.
-- `kyarakuri-prepare-environment` forwards to `doctor`.
-- `kyarakuri-generate-base-image` forwards to `generate-character-from-brief`.
-- `kyarakuri-generate-expressions` forwards to `generate-expression-sheet`.
-- `kyarakuri-build-vrm` forwards to `build-vrm-base`.
-- `kyarakuri-apply-motion-preview` forwards to `apply-motion-preview`.
-- When `--config` is omitted, wrappers inject `config/kyarakuri-comfy-blender-vrm.json`.
+## Canonical contract
+- This skill pack is the repo-local canonical implementation for `kyarakuri-*`.
+- Public entry scripts stay inside `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/`.
+- `kyarakuri-prepare-environment` resolves to `doctor`.
+- `kyarakuri-generate-base-image` resolves to `generate_character_from_brief`.
+- `kyarakuri-generate-expressions` resolves to `generate_expression_sheet`.
+- `kyarakuri-build-vrm` resolves to `build_vrm_base`.
+- `kyarakuri-apply-motion-preview` resolves to `apply_motion_preview`.
+- When `--config` is omitted, public entry scripts inject `config/kyarakuri-comfy-blender-vrm.json`.
+- Legacy `comfy-blender-vrm` entry scripts forward into this pack.
 
 ## Current output behavior
-- Generated outputs still follow the existing implementation layout under `outputs/`.
-- `kyarakuri-generate-base-image` saves generated images plus `brief.json` and `prompt-preview.txt`.
-- `kyarakuri-generate-expressions` saves expression images under `outputs/expressions/<run-id>/<expression>/`.
+- Generated base / expression outputs follow the project layout under `outputs/<project-name>/`.
+- `kyarakuri-generate-base-image` saves generated images plus `brief.json` and `prompt-preview.txt` under `outputs/<project-name>/images/base/<run-id>/`.
+- `kyarakuri-generate-expressions` saves expression images under `outputs/<project-name>/images/expressions/<run-id>/<expression>/`.
 - `kyarakuri-build-vrm` saves the updated `.blend` and one review render under `outputs/blender/<run-id>/`.
 - `kyarakuri-apply-motion-preview` saves the updated `.blend` and one preview render under `outputs/motion/<run-id>/`.

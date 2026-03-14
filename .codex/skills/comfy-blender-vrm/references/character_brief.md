@@ -5,6 +5,11 @@
 ## Required field
 - `core_concept`: short sentence describing the character idea
 
+## Additional field
+- `character_name`: short project-facing character name
+- interactive input では最初に必須で聞く
+- brief JSON では optional で、ある場合は project 名導出に優先して使う
+
 ## Optional fields
 - `style_keywords`: array of strings, for example `["anime", "cel shaded", "clean lineart"]`
 - `visual_traits`: array of strings, for example `["silver hair", "teal eyes", "short twin tails"]`
@@ -18,6 +23,7 @@
 ## JSON example
 ```json
 {
+  "character_name": "Airi",
   "core_concept": "young mechanic idol with a retro sci-fi vibe",
   "style_keywords": ["anime", "bright palette", "clean lineart"],
   "visual_traits": ["orange bob cut", "amber eyes", "small headset"],
@@ -32,10 +38,12 @@
 
 ## Prompt synthesis rules
 - `core_concept` is always required.
+- `character_name` is used first for project naming when present, but is not injected into the synthesized image prompt by default.
 - The command adds a base framing suffix for a clean full-body character sheet image.
 - Optional fields are appended only when present.
 - `negative_constraints` become an `Avoid:` clause at the end of the prompt.
 
 ## Saved artifacts
-- `brief.json`
+- `outputs/<project-name>/brief.json`
+- `outputs/<project-name>/images/base/<run-id>/brief.json`
 - `prompt-preview.txt`

@@ -5,7 +5,8 @@
 ## SP-DOCTOR-001 `doctor`
 
 ### Public alias
-- `kyarakuri-prepare-environment` は repo-local wrapper として同じ確認処理を呼ぶ
+- `kyarakuri-prepare-environment` は `kyarakuri-comfy-blender-vrm` の canonical public command である
+- `doctor` は旧 CLI 名と `config/comfy-blender-vrm.json` を維持する compatibility entry である
 
 ### 1. 設定解決
 - Given: ユーザーが `python .codex/skills/comfy-blender-vrm/scripts/doctor.py` または `--config <path>` を実行する
@@ -54,6 +55,16 @@
 - When: `generate-character-sheet` が workflow を読む
 - Then: API-format prompt JSON のみを受け付け、UI export JSON は拒否する
 
+### 2a. bundled workflow
+- Given: base image 生成の既知 workflow をすぐ使いたい
+- When: skill の workflow dir を確認する
+- Then: `neta-yume-lumina-base.api.json` があり、`NetaYumev35_pretrained_all_in_one.safetensors` と `{{character_prompt}}`、`{{seed}}`、`{{run_id}}` を前提に使える
+
+### 2b. transparent bundled workflow
+- Given: base image を transparent PNG で使いたい
+- When: skill の workflow dir を確認する
+- Then: `neta-yume-lumina-base-transparent.api.json` があり、ComfyUI 標準ノードだけで white background keying を行い、alpha 付き PNG を `SaveImage` に渡す
+
 ### 3. プレースホルダ解決
 - Given: workflow JSON にプレースホルダが含まれている
 - When: `generate-character-sheet` が submitted workflow を生成する
@@ -67,7 +78,7 @@
 ### 5. 成果物保存
 - Given: ComfyUI の画像出力が取得できている
 - When: `generate-character-sheet` が保存処理を行う
-- Then: `output_dir/character/<run-id>/images/` に画像を保存し、submitted workflow と history を同 run 配下へ保存し、`output_dir/logs/` に実行メタ情報を保存する
+- Then: `output_dir/<project-name>/images/base/<run-id>/images/` に画像を保存し、submitted workflow と history を同 run 配下へ保存し、`output_dir/<project-name>/logs/` に実行メタ情報を保存する
 
 ### 6. 失敗時の終了
 - Given: workflow ファイル不足、workflow JSON 不正、未解決プレースホルダ、ComfyUI API エラー、画像ダウンロード失敗のいずれかがある
@@ -82,7 +93,8 @@
 ## SP-GCFB-001 `generate-character-from-brief`
 
 ### Public alias
-- `kyarakuri-generate-base-image` は repo-local wrapper として同じ brief-to-image 処理を呼ぶ
+- `kyarakuri-generate-base-image` は `kyarakuri-comfy-blender-vrm` の canonical public command である
+- `generate-character-from-brief` は旧 CLI 名を維持する compatibility entry である
 
 ### 1. 入力
 - Given: ユーザーが workflow JSON を指定し、必要に応じて brief JSON、seed、config パスを指定する
@@ -92,12 +104,17 @@
 ### 2. brief 形式
 - Given: brief 情報が入力される
 - When: `generate-character-from-brief` が brief を検証する
-- Then: `core_concept` を必須とし、定義済み optional fields だけを受け付け、不正 JSON や必須項目不足は失敗にする
+- Then: `core_concept` を必須とし、`character_name` を追加フィールドとして受け付け、定義済み fields 以外は拒否し、不正 JSON や必須項目不足は失敗にする
+
+### 2a. interactive 入力順
+- Given: `--brief-file` を指定せずに実行する
+- When: `generate-character-from-brief` が対話入力を始める
+- Then: 最初に `character_name` を聞き、その後に `core_concept` と optional fields を聞く
 
 ### 3. prompt 合成
 - Given: brief が検証済みである
 - When: `generate-character-from-brief` がベース画像生成用 prompt を作る
-- Then: `core_concept` と optional fields を使って `character_prompt` を合成し、`prompt-preview.txt` を保存する
+- Then: `core_concept` と optional fields を使って `character_prompt` を合成し、`character_name` は project 名導出に使い、`prompt-preview.txt` を保存する
 
 ### 4. 既存生成経路の再利用
 - Given: `character_prompt` が合成できている
@@ -107,7 +124,7 @@
 ### 5. 成果物保存
 - Given: 画像生成が成功している
 - When: `generate-character-from-brief` が保存処理を行う
-- Then: `output_dir/character/<run-id>/` に既存成果物に加えて `brief.json` と `prompt-preview.txt` を保存し、`output_dir/logs/` の metadata に brief 情報を残す
+- Then: `output_dir/<project-name>/brief.json` と `output_dir/<project-name>/images/base/<run-id>/brief.json` の両方に brief を保存し、`output_dir/<project-name>/images/base/<run-id>/prompt-preview.txt` を保存し、`output_dir/<project-name>/logs/` の metadata に brief 情報を残す
 
 ### 6. 失敗時の終了
 - Given: brief file 不足、brief JSON 不正、brief 必須項目不足、ComfyUI API エラーのいずれかがある
@@ -122,7 +139,8 @@
 ## SP-GES-001 `generate-expression-sheet`
 
 ### Public alias
-- `kyarakuri-generate-expressions` は repo-local wrapper として同じ expression generation 処理を呼ぶ
+- `kyarakuri-generate-expressions` は `kyarakuri-comfy-blender-vrm` の canonical public command である
+- `generate-expression-sheet` は旧 CLI 名を維持する compatibility entry である
 
 ### 1. 入力
 - Given: ユーザーが workflow JSON パス、base image、`character_prompt` を指定し、必要に応じて `seed`、expression list、config パスを指定する
@@ -134,10 +152,25 @@
 - When: `generate-expression-sheet` が workflow を読む
 - Then: API-format prompt JSON のみを受け付け、UI export JSON は拒否する
 
+### 2a. bundled workflow
+- Given: expression 生成の既知 workflow をすぐ使いたい
+- When: skill の workflow dir を確認する
+- Then: `neta-yume-lumina-expressions.api.json` があり、`NetaYumev35_pretrained_all_in_one.safetensors` と `{{character_prompt}}`、`{{expression_name}}`、`{{seed}}`、`{{run_id}}`、`{{base_image_name}}` を前提に使える
+
+### 2b. transparent bundled workflow
+- Given: expression image を transparent PNG で使いたい
+- When: skill の workflow dir を確認する
+- Then: `neta-yume-lumina-expressions-transparent.api.json` があり、ComfyUI 標準ノードだけで white background keying を行い、alpha 付き PNG を `SaveImage` に渡す
+
 ### 3. base image とプレースホルダ解決
 - Given: workflow JSON にプレースホルダが含まれている
 - When: `generate-expression-sheet` がベース画像を upload し、submitted workflow を生成する
 - Then: `character_prompt`、`expression_name`、`seed`、`run_id`、base image 系の値を解決し、未解決プレースホルダが残る場合は失敗にする
+
+### 3a. project 名の引継ぎ
+- Given: base image path が `output_dir/<project-name>/images/...` 配下にある
+- When: `generate-expression-sheet` が保存先を決める
+- Then: 同じ `<project-name>` を引き継いで expression 出力先と metadata 保存先を決める
 
 ### 4. ComfyUI 実行
 - Given: submitted workflow が expression ごとに生成できている
@@ -147,7 +180,7 @@
 ### 5. 成果物保存
 - Given: expression ごとの画像出力が取得できている
 - When: `generate-expression-sheet` が保存処理を行う
-- Then: `output_dir/expressions/<run-id>/<expression>/images/` に画像を保存し、同 expression 配下に submitted workflow と history を保存し、`output_dir/logs/` に実行メタ情報を保存する
+- Then: `output_dir/<project-name>/images/expressions/<run-id>/<expression>/images/` に画像を保存し、同 expression 配下に submitted workflow と history を保存し、`output_dir/<project-name>/logs/` に実行メタ情報を保存する
 
 ### 6. 失敗時の終了
 - Given: workflow ファイル不足、workflow JSON 不正、base image 不足、未解決プレースホルダ、ComfyUI API エラー、画像ダウンロード失敗のいずれかがある
@@ -162,7 +195,8 @@
 ## SP-BVB-001 `build-vrm-base`
 
 ### Public alias
-- `kyarakuri-build-vrm` は repo-local wrapper として同じ Blender build 処理を呼ぶ
+- `kyarakuri-build-vrm` は `kyarakuri-comfy-blender-vrm` の canonical public command である
+- `build-vrm-base` は旧 CLI 名を維持する compatibility entry である
 
 ### 1. 入力
 - Given: ユーザーが `.blend` path を指定し、必要に応じて texture image と config path を指定する
@@ -202,7 +236,8 @@
 ## SP-AMP-001 `apply-motion-preview`
 
 ### Public alias
-- `kyarakuri-apply-motion-preview` は repo-local wrapper として同じ Blender motion preview 処理を呼ぶ
+- `kyarakuri-apply-motion-preview` は `kyarakuri-comfy-blender-vrm` の canonical public command である
+- `apply-motion-preview` は旧 CLI 名を維持する compatibility entry である
 
 ### 1. 入力
 - Given: ユーザーが `.blend` path と `BVH` motion file を指定し、必要に応じて config path を指定する

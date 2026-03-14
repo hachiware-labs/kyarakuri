@@ -40,7 +40,7 @@ def find_repo_root(start: Path) -> Path:
 
 
 def default_config_path(repo_root: Path) -> Path:
-    return repo_root / "config" / "comfy-blender-vrm.json"
+    return repo_root / "config" / "kyarakuri-comfy-blender-vrm.json"
 
 
 def resolve_repo_path(path_value: Path | str, repo_root: Path) -> Path:
@@ -54,7 +54,7 @@ def load_config(config_path: Path) -> dict[str, Any]:
     if not config_path.exists():
         raise GenerationError(
             detail=f"Config file was not found: {config_path}",
-            next_action="Run doctor first or create config/comfy-blender-vrm.json.",
+            next_action="Run prepare-environment first or create config/kyarakuri-comfy-blender-vrm.json.",
         )
 
     try:
@@ -81,12 +81,12 @@ def load_config(config_path: Path) -> dict[str, Any]:
     if not isinstance(comfyui_url, str) or not comfyui_url.strip():
         raise GenerationError(
             detail="Config is missing a valid 'comfyui_url' string.",
-            next_action="Add 'comfyui_url' to config/comfy-blender-vrm.json.",
+            next_action="Add 'comfyui_url' to config/kyarakuri-comfy-blender-vrm.json.",
         )
     if not isinstance(output_dir, str) or not output_dir.strip():
         raise GenerationError(
             detail="Config is missing a valid 'output_dir' string.",
-            next_action="Add 'output_dir' to config/comfy-blender-vrm.json.",
+            next_action="Add 'output_dir' to config/kyarakuri-comfy-blender-vrm.json.",
         )
     return payload
 

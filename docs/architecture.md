@@ -4,13 +4,13 @@
 
 ## レイヤー責務
 - Skill entry:
-  - `.codex/skills/comfy-blender-vrm/SKILL.md`
-  - 実行方法、既定 config、相対パス解決ルールを示す
-- Repo-local public skill entry:
   - `.codex/skills/kyarakuri-comfy-blender-vrm/SKILL.md`
-  - `kyarakuri-*` 名の wrapper command と repo-local trial 用 config を示す
+  - `kyarakuri-*` 名の canonical command、既定 config、相対パス解決ルールを示す
+- Legacy compatibility skill entry:
+  - `.codex/skills/comfy-blender-vrm/SKILL.md`
+  - 旧 CLI 名と旧既定 config を維持する compatibility layer を示す
 - CLI/application:
-  - `.codex/skills/comfy-blender-vrm/scripts/doctor.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/doctor.py`
   - 引数解決、設定読込、チェック実行、標準出力、終了コードを担当する
 - Local adapters:
   - ComfyUI HTTP probe
@@ -18,8 +18,8 @@
   - workflow / output directory check
 
 ## 依存方向
-- Skill entry -> CLI/application -> Local adapters -> ローカルファイルシステム / ローカル HTTP
-- Repo-local public skill entry -> wrapper scripts -> existing CLI/application -> Local adapters
+- Canonical skill entry -> same-pack CLI/application -> Local adapters -> ローカルファイルシステム / ローカル HTTP
+- Legacy compatibility skill entry -> compatibility wrappers -> canonical CLI/application -> Local adapters
 - ComfyUI と Blender は `doctor` から直接利用確認するだけとし、相互依存を持たせない
 
 ## 主要 I/F
@@ -45,58 +45,90 @@
 ## `kyarakuri-comfy-blender-vrm` 構成
 - Skill entry:
   - `.codex/skills/kyarakuri-comfy-blender-vrm/SKILL.md`
-  - public command 名、repo-local trial の位置づけ、既定 config を定義する
-- Wrapper scripts:
+  - public command 名、canonical 実装、既定 config を定義する
+- Public entry scripts:
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/_wrapper_common.py`
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/prepare_environment.py`
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_base_image.py`
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expressions.py`
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm.py`
+  - `--config` 未指定時に `config/kyarakuri-comfy-blender-vrm.json` を注入し、同 skill pack 内の canonical 実装を呼ぶ
+- Canonical implementation:
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/doctor.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_character_sheet.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_character_from_brief.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expression_sheet.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm_base.py`
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/apply_motion_preview.py`
-  - `--config` 未指定時に `config/kyarakuri-comfy-blender-vrm.json` を注入し、既存実装へ委譲する
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/comfy_helpers.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/blender/build_vrm_base.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/blender/apply_motion_preview.py`
 - Repo-local config:
   - `config/kyarakuri-comfy-blender-vrm.json`
   - new skill pack 用の既定 path を保持する
 
+## `comfy-blender-vrm` 構成
+- Legacy compatibility entry:
+  - `.codex/skills/comfy-blender-vrm/SKILL.md`
+  - 旧 command 名と旧既定 config を維持する
+- Compatibility wrappers:
+  - `.codex/skills/comfy-blender-vrm/scripts/_compat_common.py`
+  - `.codex/skills/comfy-blender-vrm/scripts/doctor.py`
+  - `.codex/skills/comfy-blender-vrm/scripts/generate_character_sheet.py`
+  - `.codex/skills/comfy-blender-vrm/scripts/generate_character_from_brief.py`
+  - `.codex/skills/comfy-blender-vrm/scripts/generate_expression_sheet.py`
+  - `.codex/skills/comfy-blender-vrm/scripts/build_vrm_base.py`
+  - `.codex/skills/comfy-blender-vrm/scripts/apply_motion_preview.py`
+  - canonical `kyarakuri-comfy-blender-vrm` 実装へ forward する
+
 ## `generate-character-sheet` 構成
 - CLI/application:
-  - `.codex/skills/comfy-blender-vrm/scripts/generate_character_sheet.py`
-  - 引数解決、run_id 生成、submitted workflow 作成、成果物保存、および再利用可能な生成経路 `run_character_sheet_generation()` を担当する
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_character_sheet.py`
+  - 引数解決、project 名導出、run_id 生成、submitted workflow 作成、成果物保存、および再利用可能な生成経路 `run_character_sheet_generation()` を担当する
 - Local adapters:
-  - `.codex/skills/comfy-blender-vrm/scripts/comfy_helpers.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/comfy_helpers.py`
   - config 読込、workflow 検証、placeholder 展開、ComfyUI HTTP 通信、polling、画像ダウンロードを担当する
 - Workflow contract:
-  - `.codex/skills/comfy-blender-vrm/workflows/README.md`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/workflows/README.md`
   - API-format workflow とサポート対象プレースホルダを定義する
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/workflows/neta-yume-lumina-base.api.json`
+  - 2026-03-04 のローカル成功 PNG metadata 由来の bundled base-image workflow を保持する
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/workflows/neta-yume-lumina-base-transparent.api.json`
+  - 既存 base workflow に white background keying を追加した transparent PNG 向け bundled workflow を保持する
 
 ## `generate-character-from-brief` 構成
 - CLI/application:
-  - `.codex/skills/comfy-blender-vrm/scripts/generate_character_from_brief.py`
-  - brief JSON 読込または CLI 対話入力、brief 検証、`character_prompt` 合成、brief / prompt preview 保存指定を担当する
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_character_from_brief.py`
+  - brief JSON 読込または CLI 対話入力、`character_name` を含む brief 検証、`character_prompt` 合成、project 直下 brief と run 配下 brief / prompt preview 保存指定を担当する
 - Shared application path:
-  - `.codex/skills/comfy-blender-vrm/scripts/generate_character_sheet.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_character_sheet.py`
   - 既存の ComfyUI submit / polling / image download / metadata 保存経路を再利用する
 - Brief contract:
-  - `.codex/skills/comfy-blender-vrm/references/character_brief.md`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/references/character_brief.md`
   - brief の必須 / 任意フィールドと保存成果物を定義する
+  - `character_name` がある場合は project 名導出に優先し、なければ `core_concept` を使う
 
 ## `generate-expression-sheet` 構成
 - CLI/application:
-  - `.codex/skills/comfy-blender-vrm/scripts/generate_expression_sheet.py`
-  - expression list 解決、base seed 展開、expression ごとの submitted workflow 作成、成果物保存を担当する
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expression_sheet.py`
+  - expression list 解決、base image path からの project 名引継ぎ、base seed 展開、expression ごとの submitted workflow 作成、成果物保存を担当する
 - Local adapters:
-  - `.codex/skills/comfy-blender-vrm/scripts/comfy_helpers.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/comfy_helpers.py`
   - base image upload、ComfyUI HTTP 通信、polling、画像ダウンロードを担当する
 - Workflow contract:
-  - `.codex/skills/comfy-blender-vrm/workflows/README.md`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/workflows/README.md`
   - `expression_name` と `base_image*` placeholder を含む workflow 契約を定義する
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/workflows/neta-yume-lumina-expressions.api.json`
+  - 2026-03-14 のローカル成功 expression run 由来の bundled image-to-image workflow を保持する
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/workflows/neta-yume-lumina-expressions-transparent.api.json`
+  - 既存 expression workflow に white background keying を追加した transparent PNG 向け bundled workflow を保持する
 
 ## `build-vrm-base` 構成
 - CLI/application:
-  - `.codex/skills/comfy-blender-vrm/scripts/build_vrm_base.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm_base.py`
   - config 読込、`.blend` / texture 解決、run dir 作成、Blender background process 起動、metadata 保存を担当する
 - Blender script:
-  - `.codex/skills/comfy-blender-vrm/blender/build_vrm_base.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/blender/build_vrm_base.py`
   - scene 内の first mesh material 更新、camera / light 補完、updated `.blend` 保存、review render 出力を担当する
 - Public wrapper:
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/build_vrm.py`
@@ -104,14 +136,14 @@
 
 ## `apply-motion-preview` 構成
 - CLI/application:
-  - `.codex/skills/comfy-blender-vrm/scripts/apply_motion_preview.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/apply_motion_preview.py`
   - config 読込、`.blend` / `BVH` 解決、run dir 作成、Blender background process 起動、metadata 保存を担当する
 - Blender script:
-  - `.codex/skills/comfy-blender-vrm/blender/apply_motion_preview.py`
+  - `.codex/skills/kyarakuri-comfy-blender-vrm/blender/apply_motion_preview.py`
   - first armature への action 割当、camera / light 補完、updated `.blend` 保存、preview render 出力を担当する
-- Public wrapper:
+- Public entry:
   - `.codex/skills/kyarakuri-comfy-blender-vrm/scripts/apply_motion_preview.py`
-  - repo-local public 名 `kyarakuri-apply-motion-preview` と既定 config 注入を担当する
+  - repo-local public 名 `kyarakuri-apply-motion-preview` の canonical 実装を担当する
 
 ## 状態遷移
 - config load
@@ -129,6 +161,7 @@
 - image download
 - metadata write
 - exit 0 / non-0
+- project output infer
 - base image upload
 - per-expression loop
 - per-expression save
@@ -167,4 +200,7 @@
 - smoke verify:
   - 実 ComfyUI を使い、主要機能が現行ローカル環境で通ることを確認する
   - 初期対象は `generate-character-from-brief` と `generate-expression-sheet` を想定する
+  - `generate-character-from-brief` の smoke verify seed には bundled workflow `neta-yume-lumina-base.api.json` を使える
+  - `generate-expression-sheet` の smoke verify seed には bundled workflow `neta-yume-lumina-expressions.api.json` を使える
+  - transparent background smoke verify seed には `neta-yume-lumina-base-transparent.api.json` と `neta-yume-lumina-expressions-transparent.api.json` を使える
   - 実 ComfyUI smoke verify の固定 workflow / fixed prompt / 出力確認は follow-up delta で定義する

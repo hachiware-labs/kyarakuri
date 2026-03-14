@@ -7,13 +7,31 @@
 
 ## Repo-local public skill pack
 - 名称: `kyarakuri-comfy-blender-vrm`
-- 役割: repo 内で `kyarakuri-*` の public name を試す wrapper skill pack
+- 役割: repo 内で `kyarakuri-*` の public name を試し、そのまま release seed にする canonical implementation skill pack
+- output layout:
+  - `outputs/<project-name>/brief.json`
+  - `outputs/<project-name>/images/base/<run-id>/...`
+  - `outputs/<project-name>/images/expressions/<run-id>/<expression>/...`
+- bundled workflow:
+  - `neta-yume-lumina-base.api.json`
+  - 2026-03-04 のローカル成功 PNG metadata 由来の base-image 用 workflow
+  - `neta-yume-lumina-base-transparent.api.json`
+  - 2026-03-14 に repo 内へ追加した transparent PNG 向け base-image workflow
+  - `neta-yume-lumina-expressions.api.json`
+  - 2026-03-14 のローカル成功 expression run 由来の image-to-image workflow
+  - `neta-yume-lumina-expressions-transparent.api.json`
+  - 2026-03-14 に repo 内へ追加した transparent PNG 向け expression workflow
 - 実装済み public commands:
   - `kyarakuri-prepare-environment`
   - `kyarakuri-generate-base-image`
   - `kyarakuri-generate-expressions`
   - `kyarakuri-build-vrm`
   - `kyarakuri-apply-motion-preview`
+
+## Legacy compatibility skill pack
+- 名称: `comfy-blender-vrm`
+- 役割: 旧 CLI 名と `config/comfy-blender-vrm.json` を維持する compatibility layer
+- 実装方式: `.codex/skills/kyarakuri-comfy-blender-vrm/` の canonical 実装を呼び出す
 
 ## 機能一覧
 - SP-DOCTOR-001:

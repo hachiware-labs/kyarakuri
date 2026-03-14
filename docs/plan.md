@@ -4,6 +4,20 @@
 ユーザーは `planをシュリンクして` といつでも指示してよく、その場合は `plan-archive-shrinker` skill を使う。Codex は plan の archive 領域が 100行を超えたら slim 化してよい。
 
 # current
+- [x] `DR-20260314-character-name-project-brief` を起票する
+- [x] `DR-20260314-character-name-project-brief` を archive まで完了する
+- [x] `DR-20260314-root-bilingual-readme` を起票する
+- [x] `DR-20260314-root-bilingual-readme` を archive まで完了する
+- [x] `DR-20260314-release-skill-consolidation` を起票する
+- [x] `DR-20260314-release-skill-consolidation` を archive まで完了する
+- [x] `DR-20260314-transparent-background-workflows` を起票する
+- [x] `DR-20260314-transparent-background-workflows` を archive まで完了する
+- [x] `DR-20260314-project-output-layout` を起票する
+- [x] `DR-20260314-project-output-layout` を archive まで完了する
+- [x] `DR-20260314-bundle-known-good-expression-workflow` を起票する
+- [x] `DR-20260314-bundle-known-good-expression-workflow` を archive まで完了する
+- [x] `DR-20260314-bundle-known-good-base-workflow` を起票する
+- [x] `DR-20260314-bundle-known-good-base-workflow` を archive まで完了する
 - [x] `DR-20260313-generate-character-from-brief` を起票する
 - [x] `DR-20260313-generate-character-from-brief` を archive まで完了する
 - [x] `DR-20260313-repo-local-kyarakuri-skill-pack` を起票する
@@ -29,9 +43,17 @@
 
 # future
 - 将来計画を粗く列挙する
-- `DR-20260313-real-comfyui-smoke-verify`: 実 ComfyUI を使って `generate-base-image` / `generate-expressions` の smoke verify を定義し、repo-local skill の提供前確認を行う
+- `review delta`: repo-local canonical skill pack への集約後に layer / docs / verify coverage を横断点検する
+- `distributable-skill migration`: repo 内 canonical skill pack が安定したら提供用 skill へ移す
 
 # archive
+- [x] `DR-20260314-character-name-project-brief`: base image の対話入力で `character_name` を追加し、`outputs/<project-name>/brief.json` を保存するようにした
+- [x] `DR-20260314-root-bilingual-readme`: repo root に `README.md` と `README_ja.md` を追加し、project 入口を bilingual 化した
+- [x] `DR-20260314-release-skill-consolidation`: `kyarakuri-comfy-blender-vrm` を canonical implementation skill pack に昇格し、旧 `comfy-blender-vrm` を compatibility wrapper layer に整理した
+- [x] `DR-20260314-transparent-background-workflows`: local-only / standard-node の transparent workflow を base / expressions 用に追加し、real ComfyUI で alpha 付き PNG verify を通した
+- [x] `DR-20260314-project-output-layout`: base / expressions の保存先を `outputs/<project-name>/images/...` と `outputs/<project-name>/logs/` に変更し、real ComfyUI で新レイアウトの verify を通した
+- [x] `DR-20260314-bundle-known-good-expression-workflow`: 2026-03-14 の成功 expression run 由来の `neta-yume-lumina-expressions.api.json` を internal / repo-local workflow dir に追加し、real ComfyUI で 2 表情の verify を通した
+- [x] `DR-20260314-bundle-known-good-base-workflow`: 2026-03-04 の成功 PNG metadata 由来の `neta-yume-lumina-base.api.json` を internal / repo-local workflow dir に追加し、bundled workflow として docs に同期した
 - [x] `DR-20260313-doctor-command`: `doctor` を実装し、verify PASS で archive した
 - [x] `DR-20260313-generate-character-sheet`: API-format workflow から立ち絵生成、画像保存、実行メタ保存を実装し archive した
 - [x] `DR-20260313-generate-character-from-brief`: brief の対話入力 / JSON 読込、prompt 合成、既存 character sheet 経路の再利用、brief / prompt preview 保存を実装し archive した
