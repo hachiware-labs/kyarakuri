@@ -2,7 +2,7 @@
 
 ローカルに導入した ComfyUI と Blender を使って、キャラクター作成フローを組み立てる repo です。
 
-現在は `kyarakuri-comfy-blender-vrm` を canonical skill pack として使い、次の処理を repo 内で実行できます。
+現在は `Forma Character` (`forma-character`) を canonical repo-local skill pack として使い、次の処理を repo 内で実行できます。
 
 - 環境確認
 - brief からのベース画像生成
@@ -10,45 +10,44 @@
 - Blender を使った VRM 作業土台の作成
 - Blender を使ったモーション preview
 
-旧 `comfy-blender-vrm` skill pack は、従来の CLI 名を維持する compatibility layer として残しています。
-
 ## 現在地
 
 - フェーズ: `P0`
-- canonical skill pack: [`./.codex/skills/kyarakuri-comfy-blender-vrm/SKILL.md`](./.codex/skills/kyarakuri-comfy-blender-vrm/SKILL.md)
-- legacy compatibility layer: [`./.codex/skills/comfy-blender-vrm/SKILL.md`](./.codex/skills/comfy-blender-vrm/SKILL.md)
-- repo-local 既定 config: [`./config/kyarakuri-comfy-blender-vrm.json`](./config/kyarakuri-comfy-blender-vrm.json)
+- canonical skill pack: [`./.codex/skills/forma-character/SKILL.md`](./.codex/skills/forma-character/SKILL.md)
+- repo-local 既定 config: [`./config/forma-character.json`](./config/forma-character.json)
 - 正本 docs の入口: [`./docs/OVERVIEW.md`](./docs/OVERVIEW.md)
 
 ## 利用できるコマンド
 
-- `kyarakuri-prepare-environment`
-- `kyarakuri-generate-base-image`
-- `kyarakuri-generate-expressions`
-- `kyarakuri-build-vrm`
-- `kyarakuri-apply-motion-preview`
+- `forma-character-prepare-environment`
+- `forma-character-generate-base-image`
+- `forma-character-generate-expressions`
+- `forma-character-build-vrm`
+- `forma-character-apply-motion-preview`
 
 ## クイックスタート
 
 1. まずローカル環境を確認します。
 
 ```powershell
-python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/prepare_environment.py
+python .codex/skills/forma-character/scripts/prepare_environment.py
 ```
 
 2. brief からベース画像を生成します。
 
 ```powershell
-python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_base_image.py `
-  --workflow .codex/skills/kyarakuri-comfy-blender-vrm/workflows/neta-yume-lumina-base.api.json `
+python .codex/skills/forma-character/scripts/generate_base_image.py `
+  --workflow .codex/skills/forma-character/workflows/neta-yume-lumina-base-transparent.api.json `
   --brief-file outputs/tmp/real-comfyui-brief.json
 ```
+
+`forma-character-generate-base-image` は、背景なし・説明文字なし・立ち姿のベース画像向け prompt を常に合成します。
 
 3. 保存済みのベース画像から表情差分を生成します。
 
 ```powershell
-python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expressions.py `
-  --workflow .codex/skills/kyarakuri-comfy-blender-vrm/workflows/neta-yume-lumina-expressions.api.json `
+python .codex/skills/forma-character/scripts/generate_expressions.py `
+  --workflow .codex/skills/forma-character/workflows/neta-yume-lumina-expressions.api.json `
   --base-image outputs/<project-name>/images/base/<run-id>/images/<image>.png `
   --character-prompt "<同じ prompt>" `
   --expressions neutral,smile
@@ -63,7 +62,7 @@ canonical skill pack には、repo 内でそのまま使える bundled workflow 
 - `neta-yume-lumina-expressions.api.json`
 - `neta-yume-lumina-expressions-transparent.api.json`
 
-workflow の前提や placeholder は [`./.codex/skills/kyarakuri-comfy-blender-vrm/workflows/README.md`](./.codex/skills/kyarakuri-comfy-blender-vrm/workflows/README.md) を参照してください。
+workflow の前提や placeholder は [`./.codex/skills/forma-character/workflows/README.md`](./.codex/skills/forma-character/workflows/README.md) を参照してください。
 
 ## 出力レイアウト
 

@@ -22,21 +22,23 @@ plan.md の archive は計画タスクの完了記録であり、delta archive�
 - 現在フェーズ: P0
 - 今回スコープ（1〜5行）:
   - Active Delta: なし
-  - 直近完了: `DR-20260314-character-name-project-brief` を archive 済み
+  - 直近完了: `DR-20260314-base-image-standing-defaults` を archive 済み
   - internal / repo-local の既定 config は `http://127.0.0.1:8000` に揃った
-  - `doctor` と `kyarakuri-prepare-environment` は現行ローカル環境で PASS する
+  - `doctor` と `forma-character-prepare-environment` は現行ローカル環境で PASS する
   - 実 ComfyUI は主要機能の smoke verify に使う方針を正本 docs に反映した
   - bundled workflow `neta-yume-lumina-base.api.json` と `neta-yume-lumina-expressions.api.json` を internal / repo-local workflow dir に追加した
-  - 2026-03-14 に実 ComfyUI で `kyarakuri-generate-base-image` と `kyarakuri-generate-expressions` の成功を確認した
+  - 2026-03-14 に実 ComfyUI で `forma-character-generate-base-image` と `forma-character-generate-expressions` の成功を確認した
   - transparent workflow `neta-yume-lumina-base-transparent.api.json` と `neta-yume-lumina-expressions-transparent.api.json` を internal / repo-local workflow dir に追加した
   - 2026-03-14 に実 ComfyUI で transparent base / expressions PNG の alpha 出力を確認した
   - 新規の base / expressions は `outputs/<project-name>/images/...` と `outputs/<project-name>/logs/` に保存し、base image brief は `outputs/<project-name>/brief.json` にも保存する
-  - `kyarakuri-comfy-blender-vrm` は repo 内 canonical implementation skill pack、`comfy-blender-vrm` は legacy compatibility layer になった
+  - `Forma Character` (`forma-character`) は repo 内 canonical implementation skill pack である
+  - legacy compatibility layer と `config/comfy-blender-vrm.json` は repo から削除済みである
+  - `forma-character-generate-base-image` は standing full-body / backgroundless / no text overlay の defaults を prompt 合成時に常に入れ、interactive input では background を聞かない
   - 次の seed は `review delta` または提供用 skill への移行 delta
 - 非ゴール（やらないこと）:
   - FBX 対応、複雑な retargeting、動画出力
   - VRM 正式 export、rig 自動生成、shape key 自動作成
-  - 既存 skill pack の削除や全面 rename
+  - internal implementation command 名の rename
 - 重要リンク:
   - concept: `./concept.md`
   - spec: `./spec.md`

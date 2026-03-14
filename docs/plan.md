@@ -4,8 +4,14 @@
 ユーザーは `planをシュリンクして` といつでも指示してよく、その場合は `plan-archive-shrinker` skill を使う。Codex は plan の archive 領域が 100行を超えたら slim 化してよい。
 
 # current
+- [x] `DR-20260314-rename-to-forma-character` を起票する
+- [x] `DR-20260314-rename-to-forma-character` を archive まで完了する
+- [x] `DR-20260314-remove-legacy-compat-layer` を起票する
+- [x] `DR-20260314-remove-legacy-compat-layer` を archive まで完了する
 - [x] `DR-20260314-character-name-project-brief` を起票する
 - [x] `DR-20260314-character-name-project-brief` を archive まで完了する
+- [x] `DR-20260314-base-image-standing-defaults` を起票する
+- [x] `DR-20260314-base-image-standing-defaults` を archive まで完了する
 - [x] `DR-20260314-root-bilingual-readme` を起票する
 - [x] `DR-20260314-root-bilingual-readme` を archive まで完了する
 - [x] `DR-20260314-release-skill-consolidation` を起票する
@@ -47,7 +53,10 @@
 - `distributable-skill migration`: repo 内 canonical skill pack が安定したら提供用 skill へ移す
 
 # archive
+- [x] `DR-20260314-rename-to-forma-character`: canonical skill pack / config / public command 名を `Forma Character` / `forma-character-*` へ揃え、renamed pack で real ComfyUI / fake Blender verify を通した
+- [x] `DR-20260314-remove-legacy-compat-layer`: legacy compatibility skill pack と old config を削除し、`kyarakuri-comfy-blender-vrm` 単独で real ComfyUI / fake Blender verify を通した
 - [x] `DR-20260314-character-name-project-brief`: base image の対話入力で `character_name` を追加し、`outputs/<project-name>/brief.json` を保存するようにした
+- [x] `DR-20260314-base-image-standing-defaults`: base image prompt に standing full-body / backgroundless / no text overlay defaults を固定し、interactive brief は background を聞かない形へ揃えた
 - [x] `DR-20260314-root-bilingual-readme`: repo root に `README.md` と `README_ja.md` を追加し、project 入口を bilingual 化した
 - [x] `DR-20260314-release-skill-consolidation`: `kyarakuri-comfy-blender-vrm` を canonical implementation skill pack に昇格し、旧 `comfy-blender-vrm` を compatibility wrapper layer に整理した
 - [x] `DR-20260314-transparent-background-workflows`: local-only / standard-node の transparent workflow を base / expressions 用に追加し、real ComfyUI で alpha 付き PNG verify を通した

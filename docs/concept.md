@@ -6,8 +6,9 @@
 - P0
 
 ## Repo-local public skill pack
-- 名称: `kyarakuri-comfy-blender-vrm`
-- 役割: repo 内で `kyarakuri-*` の public name を試し、そのまま release seed にする canonical implementation skill pack
+- 表示名: `Forma Character`
+- 名称: `forma-character`
+- 役割: repo 内で `forma-character-*` の public name を試し、そのまま release seed にする canonical implementation skill pack
 - output layout:
   - `outputs/<project-name>/brief.json`
   - `outputs/<project-name>/images/base/<run-id>/...`
@@ -22,16 +23,11 @@
   - `neta-yume-lumina-expressions-transparent.api.json`
   - 2026-03-14 に repo 内へ追加した transparent PNG 向け expression workflow
 - 実装済み public commands:
-  - `kyarakuri-prepare-environment`
-  - `kyarakuri-generate-base-image`
-  - `kyarakuri-generate-expressions`
-  - `kyarakuri-build-vrm`
-  - `kyarakuri-apply-motion-preview`
-
-## Legacy compatibility skill pack
-- 名称: `comfy-blender-vrm`
-- 役割: 旧 CLI 名と `config/comfy-blender-vrm.json` を維持する compatibility layer
-- 実装方式: `.codex/skills/kyarakuri-comfy-blender-vrm/` の canonical 実装を呼び出す
+  - `forma-character-prepare-environment`
+  - `forma-character-generate-base-image`
+  - `forma-character-generate-expressions`
+  - `forma-character-build-vrm`
+  - `forma-character-apply-motion-preview`
 
 ## 機能一覧
 - SP-DOCTOR-001:
@@ -44,7 +40,7 @@
   - 状態: 実装済み / archive 済み
 - SP-GCFB-001:
   - 名称: `generate-character-from-brief`
-  - 目的: ユーザー brief を収集し、ベース画像生成用の `character_prompt` を合成して、画像と brief を一緒に保存する。
+  - 目的: ユーザー brief を収集し、背景なし・説明文字なし・立ち姿のベース画像向け `character_prompt` を合成して、画像と brief を一緒に保存する。
   - 状態: 実装済み / archive 済み
 - SP-GES-001:
   - 名称: `generate-expression-sheet`

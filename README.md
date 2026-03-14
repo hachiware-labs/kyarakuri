@@ -2,7 +2,7 @@
 
 Repo-local character creation workflow built around local ComfyUI and Blender.
 
-This repository currently uses `kyarakuri-comfy-blender-vrm` as the canonical skill pack for:
+This repository currently uses `Forma Character` (`forma-character`) as the canonical repo-local skill pack for:
 
 - environment checks
 - base image generation from a character brief
@@ -10,45 +10,44 @@ This repository currently uses `kyarakuri-comfy-blender-vrm` as the canonical sk
 - Blender-based VRM workspace preparation
 - Blender-based motion preview
 
-The legacy `comfy-blender-vrm` skill pack is still present as a compatibility layer for the older CLI names.
-
 ## Status
 
 - Phase: `P0`
-- Canonical skill pack: [`./.codex/skills/kyarakuri-comfy-blender-vrm/SKILL.md`](./.codex/skills/kyarakuri-comfy-blender-vrm/SKILL.md)
-- Legacy compatibility layer: [`./.codex/skills/comfy-blender-vrm/SKILL.md`](./.codex/skills/comfy-blender-vrm/SKILL.md)
-- Default repo-local config: [`./config/kyarakuri-comfy-blender-vrm.json`](./config/kyarakuri-comfy-blender-vrm.json)
+- Canonical skill pack: [`./.codex/skills/forma-character/SKILL.md`](./.codex/skills/forma-character/SKILL.md)
+- Default repo-local config: [`./config/forma-character.json`](./config/forma-character.json)
 - Canonical project docs entry: [`./docs/OVERVIEW.md`](./docs/OVERVIEW.md)
 
 ## Available Commands
 
-- `kyarakuri-prepare-environment`
-- `kyarakuri-generate-base-image`
-- `kyarakuri-generate-expressions`
-- `kyarakuri-build-vrm`
-- `kyarakuri-apply-motion-preview`
+- `forma-character-prepare-environment`
+- `forma-character-generate-base-image`
+- `forma-character-generate-expressions`
+- `forma-character-build-vrm`
+- `forma-character-apply-motion-preview`
 
 ## Quick Start
 
 1. Check the local environment.
 
 ```powershell
-python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/prepare_environment.py
+python .codex/skills/forma-character/scripts/prepare_environment.py
 ```
 
 2. Generate a base image from a brief.
 
 ```powershell
-python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_base_image.py `
-  --workflow .codex/skills/kyarakuri-comfy-blender-vrm/workflows/neta-yume-lumina-base.api.json `
+python .codex/skills/forma-character/scripts/generate_base_image.py `
+  --workflow .codex/skills/forma-character/workflows/neta-yume-lumina-base-transparent.api.json `
   --brief-file outputs/tmp/real-comfyui-brief.json
 ```
+
+`forma-character-generate-base-image` always synthesizes a standing full-body base-image prompt with no background scene and no text overlays.
 
 3. Generate expressions from the saved base image.
 
 ```powershell
-python .codex/skills/kyarakuri-comfy-blender-vrm/scripts/generate_expressions.py `
-  --workflow .codex/skills/kyarakuri-comfy-blender-vrm/workflows/neta-yume-lumina-expressions.api.json `
+python .codex/skills/forma-character/scripts/generate_expressions.py `
+  --workflow .codex/skills/forma-character/workflows/neta-yume-lumina-expressions.api.json `
   --base-image outputs/<project-name>/images/base/<run-id>/images/<image>.png `
   --character-prompt "<same prompt>" `
   --expressions neutral,smile
@@ -63,7 +62,7 @@ The canonical skill pack includes repo-local bundled workflows:
 - `neta-yume-lumina-expressions.api.json`
 - `neta-yume-lumina-expressions-transparent.api.json`
 
-See [`./.codex/skills/kyarakuri-comfy-blender-vrm/workflows/README.md`](./.codex/skills/kyarakuri-comfy-blender-vrm/workflows/README.md) for workflow assumptions and placeholders.
+See [`./.codex/skills/forma-character/workflows/README.md`](./.codex/skills/forma-character/workflows/README.md) for workflow assumptions and placeholders.
 
 ## Output Layout
 

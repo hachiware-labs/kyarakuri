@@ -5,13 +5,13 @@
 ## SP-DOCTOR-001 `doctor`
 
 ### Public alias
-- `kyarakuri-prepare-environment` は `kyarakuri-comfy-blender-vrm` の canonical public command である
-- `doctor` は旧 CLI 名と `config/comfy-blender-vrm.json` を維持する compatibility entry である
+- `forma-character-prepare-environment` は `forma-character` の canonical public command である
+- `doctor` は `forma-character` 内の internal implementation command である
 
 ### 1. 設定解決
-- Given: ユーザーが `python .codex/skills/comfy-blender-vrm/scripts/doctor.py` または `--config <path>` を実行する
+- Given: ユーザーが `python .codex/skills/forma-character/scripts/prepare_environment.py` または `python .codex/skills/forma-character/scripts/doctor.py` を実行し、必要に応じて `--config <path>` を指定する
 - When: `doctor` が起動する
-- Then: `config/comfy-blender-vrm.json` を既定設定として扱い、`comfyui_url`、`blender_path`、`workflow_dir`、`output_dir` の解決結果を個別に表示する
+- Then: `config/forma-character.json` を既定設定として扱い、`comfyui_url`、`blender_path`、`workflow_dir`、`output_dir` の解決結果を個別に表示する
 
 ### 2. パス解決
 - Given: 設定内に相対パスが含まれる
@@ -93,8 +93,8 @@
 ## SP-GCFB-001 `generate-character-from-brief`
 
 ### Public alias
-- `kyarakuri-generate-base-image` は `kyarakuri-comfy-blender-vrm` の canonical public command である
-- `generate-character-from-brief` は旧 CLI 名を維持する compatibility entry である
+- `forma-character-generate-base-image` は `forma-character` の canonical public command である
+- `generate-character-from-brief` は `forma-character` 内の internal implementation command である
 
 ### 1. 入力
 - Given: ユーザーが workflow JSON を指定し、必要に応じて brief JSON、seed、config パスを指定する
@@ -104,17 +104,17 @@
 ### 2. brief 形式
 - Given: brief 情報が入力される
 - When: `generate-character-from-brief` が brief を検証する
-- Then: `core_concept` を必須とし、`character_name` を追加フィールドとして受け付け、定義済み fields 以外は拒否し、不正 JSON や必須項目不足は失敗にする
+- Then: `core_concept` を必須とし、`character_name` を追加フィールドとして受け付け、`background` は後方互換用 field として受け付け続け、定義済み fields 以外は拒否し、不正 JSON や必須項目不足は失敗にする
 
 ### 2a. interactive 入力順
 - Given: `--brief-file` を指定せずに実行する
 - When: `generate-character-from-brief` が対話入力を始める
-- Then: 最初に `character_name` を聞き、その後に `core_concept` と optional fields を聞く
+- Then: 最初に `character_name` を聞き、その後に `core_concept` と optional fields を聞き、background の自由入力は聞かず、pose は standing detail として聞く
 
 ### 3. prompt 合成
 - Given: brief が検証済みである
 - When: `generate-character-from-brief` がベース画像生成用 prompt を作る
-- Then: `core_concept` と optional fields を使って `character_prompt` を合成し、`character_name` は project 名導出に使い、`prompt-preview.txt` を保存する
+- Then: `core_concept` と optional fields を使って `character_prompt` を合成し、standing full-body、backgroundless、no text overlay の defaults を常に含め、`background` field は prompt に反映せず、`character_name` は project 名導出に使い、`prompt-preview.txt` を保存する
 
 ### 4. 既存生成経路の再利用
 - Given: `character_prompt` が合成できている
@@ -139,8 +139,8 @@
 ## SP-GES-001 `generate-expression-sheet`
 
 ### Public alias
-- `kyarakuri-generate-expressions` は `kyarakuri-comfy-blender-vrm` の canonical public command である
-- `generate-expression-sheet` は旧 CLI 名を維持する compatibility entry である
+- `forma-character-generate-expressions` は `forma-character` の canonical public command である
+- `generate-expression-sheet` は `forma-character` 内の internal implementation command である
 
 ### 1. 入力
 - Given: ユーザーが workflow JSON パス、base image、`character_prompt` を指定し、必要に応じて `seed`、expression list、config パスを指定する
@@ -195,8 +195,8 @@
 ## SP-BVB-001 `build-vrm-base`
 
 ### Public alias
-- `kyarakuri-build-vrm` は `kyarakuri-comfy-blender-vrm` の canonical public command である
-- `build-vrm-base` は旧 CLI 名を維持する compatibility entry である
+- `forma-character-build-vrm` は `forma-character` の canonical public command である
+- `build-vrm-base` は `forma-character` 内の internal implementation command である
 
 ### 1. 入力
 - Given: ユーザーが `.blend` path を指定し、必要に応じて texture image と config path を指定する
@@ -236,8 +236,8 @@
 ## SP-AMP-001 `apply-motion-preview`
 
 ### Public alias
-- `kyarakuri-apply-motion-preview` は `kyarakuri-comfy-blender-vrm` の canonical public command である
-- `apply-motion-preview` は旧 CLI 名を維持する compatibility entry である
+- `forma-character-apply-motion-preview` は `forma-character` の canonical public command である
+- `apply-motion-preview` は `forma-character` 内の internal implementation command である
 
 ### 1. 入力
 - Given: ユーザーが `.blend` path と `BVH` motion file を指定し、必要に応じて config path を指定する
