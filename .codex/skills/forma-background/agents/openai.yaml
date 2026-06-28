@@ -1,0 +1,4 @@
+interface:
+  display_name: "Forma Background"
+  short_description: "Create backgrounds and fixed-composition time/weather variants."
+  default_prompt: "Create a background scene and time-of-day or weather variations while preserving the same composition."

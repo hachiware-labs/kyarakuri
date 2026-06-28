@@ -4,6 +4,20 @@
 ユーザーは `planをシュリンクして` といつでも指示してよく、その場合は `plan-archive-shrinker` skill を使う。Codex は plan の archive 領域が 100行を超えたら slim 化してよい。
 
 # current
+- [x] `DR-20260628-forma-background-no-comfyui` を起票する
+- [x] `DR-20260628-forma-background-no-comfyui` を archive まで完了する
+- [x] `DR-20260628-forma-background-imagegen-fixed-variants` を起票する
+- [x] `DR-20260628-forma-background-imagegen-fixed-variants` を archive まで完了する
+- [x] `DR-20260628-forma-background-animagine-sdxl` を起票する
+- [x] `DR-20260628-forma-background-animagine-sdxl` を archive まで完了する
+- [x] `DR-20260628-forma-background-art-direction-method` を起票する
+- [x] `DR-20260628-forma-background-art-direction-method` を archive まで完了する
+- [x] `DR-20260628-forma-background-executable-generation` を起票する
+- [x] `DR-20260628-forma-background-executable-generation` を archive まで完了する
+- [x] `DR-20260628-forma-background-weather-variants` を起票する
+- [x] `DR-20260628-forma-background-weather-variants` を archive まで完了する
+- [x] `DR-20260628-forma-background-skill` を起票する
+- [x] `DR-20260628-forma-background-skill` を archive まで完了する
 - [x] `DR-20260628-background-transparent-comfyui-rmbg` を起票する
 - [x] `DR-20260628-background-transparent-comfyui-rmbg` を archive まで完了する
 - [x] `DR-20260628-background-transparent-multipass-refine` を起票する
@@ -65,6 +79,13 @@
 - `distributable-skill migration`: repo 内 canonical skill pack が安定したら提供用 skill へ移す
 
 # archive
+- [x] `DR-20260628-forma-background-no-comfyui`: 背景画像作成では ComfyUI を使わず、imagegen base 生成と fixed-composition imagegen edit variants を正規方針として確定し、背景用 ComfyUI script を削除した
+- [x] `DR-20260628-forma-background-imagegen-fixed-variants`: `forma-background` の主経路を imagegen base 生成と approved base からの fixed-composition imagegen edit variant に整理し、ComfyUI は fallback / experimental に下げた
+- [x] `DR-20260628-forma-background-animagine-sdxl`: `forma-background` に SDXL checkpoint workflow と Animagine XL 4.0 Opt 指定を追加し、local smoke 生成を確認したが、背景 base の主経路には採用しない判断を記録した
+- [x] `DR-20260628-forma-background-art-direction-method`: `forma-background` に quality preset と output name 指定を追加し、背景美術向け art direction prompt / seed candidate / approved base variant 化で野球場背景と雨天 variant を再生成した
+- [x] `DR-20260628-forma-background-executable-generation`: `forma-background` に local ComfyUI 実行 script を追加し、バックネットから見た野球場 base と雨天 variant を `outputs/baseball-stadium/backgrounds/backnet-view/` に生成した
+- [x] `DR-20260628-forma-background-weather-variants`: `forma-background` に雨・雪・霧・嵐などの weather variants を追加し、固定構図のまま天候・表面状態・照明だけを変える方針を明記した
+- [x] `DR-20260628-forma-background-skill`: `forma-background` repo-local skill を追加し、背景 brief / base background / 固定構図の time variation / 保存先 / ComfyUI img2img 推奨値を定義した
 - [x] `DR-20260628-background-transparent-comfyui-rmbg`: `background-transparent` に ComfyUI-RMBG API wrapper を追加し、人物向け既定を `BiRefNet-portrait`、Pillow script を fallback とする運用へ更新した
 - [x] `DR-20260628-background-transparent-multipass-refine`: `background-transparent` に corner-start flood fill と multi-pass refinement を追加し、cropped portrait の白い服を守りながら hidamari 管理人さん画像の `transparent-v3` 出力を生成した
 - [x] `DR-20260628-background-transparent-protect-subject-whites`: `background-transparent` の auto mode を corner seed / border-connected background 基準へ寄せ、白い服や淡色被写体を保護する検証と hidamari 管理人さん画像の `transparent-v2` 出力を追加した
