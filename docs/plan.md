@@ -4,6 +4,8 @@
 ユーザーは `planをシュリンクして` といつでも指示してよく、その場合は `plan-archive-shrinker` skill を使う。Codex は plan の archive 領域が 100行を超えたら slim 化してよい。
 
 # current
+- [x] `DR-20260628-readme-usage-and-model-setup` を起票する
+- [x] `DR-20260628-readme-usage-and-model-setup` を archive まで完了する
 - [x] `DR-20260628-forma-background-no-comfyui` を起票する
 - [x] `DR-20260628-forma-background-no-comfyui` を archive まで完了する
 - [x] `DR-20260628-forma-background-imagegen-fixed-variants` を起票する
@@ -79,6 +81,7 @@
 - `distributable-skill migration`: repo 内 canonical skill pack が安定したら提供用 skill へ移す
 
 # archive
+- [x] `DR-20260628-readme-usage-and-model-setup`: `README.md` / `README_ja.md` に Forma Character / Forma Background / Background Transparent の使い方と、末尾に ComfyUI 追加 checkpoint / ComfyUI-RMBG setup 手順を追加した
 - [x] `DR-20260628-forma-background-no-comfyui`: 背景画像作成では ComfyUI を使わず、imagegen base 生成と fixed-composition imagegen edit variants を正規方針として確定し、背景用 ComfyUI script を削除した
 - [x] `DR-20260628-forma-background-imagegen-fixed-variants`: `forma-background` の主経路を imagegen base 生成と approved base からの fixed-composition imagegen edit variant に整理し、ComfyUI は fallback / experimental に下げた
 - [x] `DR-20260628-forma-background-animagine-sdxl`: `forma-background` に SDXL checkpoint workflow と Animagine XL 4.0 Opt 指定を追加し、local smoke 生成を確認したが、背景 base の主経路には採用しない判断を記録した

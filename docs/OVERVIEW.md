@@ -22,7 +22,7 @@ plan.md の archive は計画タスクの完了記録であり、delta archive�
 - 現在フェーズ: P0
 - 今回スコープ（1〜5行）:
   - Active Delta: なし
-  - 直近完了: `DR-20260628-forma-background-no-comfyui` を archive 済み
+  - 直近完了: `DR-20260628-readme-usage-and-model-setup` を archive 済み
   - internal / repo-local の既定 config は `http://127.0.0.1:8000` に揃った
   - `doctor` と `forma-character-prepare-environment` は現行ローカル環境で PASS する
   - 実 ComfyUI は主要機能の smoke verify に使う方針を正本 docs に反映した
