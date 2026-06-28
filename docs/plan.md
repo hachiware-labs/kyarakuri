@@ -4,6 +4,12 @@
 ユーザーは `planをシュリンクして` といつでも指示してよく、その場合は `plan-archive-shrinker` skill を使う。Codex は plan の archive 領域が 100行を超えたら slim 化してよい。
 
 # current
+- [x] `DR-20260628-background-transparent-comfyui-rmbg` を起票する
+- [x] `DR-20260628-background-transparent-comfyui-rmbg` を archive まで完了する
+- [x] `DR-20260628-background-transparent-multipass-refine` を起票する
+- [x] `DR-20260628-background-transparent-multipass-refine` を archive まで完了する
+- [x] `DR-20260628-background-transparent-protect-subject-whites` を起票する
+- [x] `DR-20260628-background-transparent-protect-subject-whites` を archive まで完了する
 - [x] `DR-20260413-background-transparent-script` を起票する
 - [x] `DR-20260413-background-transparent-script` を archive まで完了する
 - [x] `DR-20260412-background-transparent-skill` を起票する
@@ -59,6 +65,9 @@
 - `distributable-skill migration`: repo 内 canonical skill pack が安定したら提供用 skill へ移す
 
 # archive
+- [x] `DR-20260628-background-transparent-comfyui-rmbg`: `background-transparent` に ComfyUI-RMBG API wrapper を追加し、人物向け既定を `BiRefNet-portrait`、Pillow script を fallback とする運用へ更新した
+- [x] `DR-20260628-background-transparent-multipass-refine`: `background-transparent` に corner-start flood fill と multi-pass refinement を追加し、cropped portrait の白い服を守りながら hidamari 管理人さん画像の `transparent-v3` 出力を生成した
+- [x] `DR-20260628-background-transparent-protect-subject-whites`: `background-transparent` の auto mode を corner seed / border-connected background 基準へ寄せ、白い服や淡色被写体を保護する検証と hidamari 管理人さん画像の `transparent-v2` 出力を追加した
 - [x] `DR-20260413-background-transparent-script`: `background-transparent` に Pillow script `scripts/remove_background.py` を追加し、white/checker/auto mode、preview 生成、alpha 統計 JSON 出力を使えるようにした
 - [x] `DR-20260412-background-transparent-skill`: 既存画像の背景透明化用 repo-local skill `background-transparent` を追加し、非破壊保存と transparent PNG cutout の手順を定義した
 - [x] `DR-20260315-forma-skill-frontmatter`: `forma-character/SKILL.md` に YAML frontmatter を追加し、skill loader が読める構造へ戻した
