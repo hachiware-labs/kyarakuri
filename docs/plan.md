@@ -4,6 +4,12 @@
 ユーザーは `planをシュリンクして` といつでも指示してよく、その場合は `plan-archive-shrinker` skill を使う。Codex は plan の archive 領域が 100行を超えたら slim 化してよい。
 
 # current
+- [x] `DR-20260413-background-transparent-script` を起票する
+- [x] `DR-20260413-background-transparent-script` を archive まで完了する
+- [x] `DR-20260412-background-transparent-skill` を起票する
+- [x] `DR-20260412-background-transparent-skill` を archive まで完了する
+- [x] `DR-20260315-forma-skill-frontmatter` を起票する
+- [x] `DR-20260315-forma-skill-frontmatter` を archive まで完了する
 - [x] `DR-20260314-rename-to-forma-character` を起票する
 - [x] `DR-20260314-rename-to-forma-character` を archive まで完了する
 - [x] `DR-20260314-remove-legacy-compat-layer` を起票する
@@ -53,6 +59,9 @@
 - `distributable-skill migration`: repo 内 canonical skill pack が安定したら提供用 skill へ移す
 
 # archive
+- [x] `DR-20260413-background-transparent-script`: `background-transparent` に Pillow script `scripts/remove_background.py` を追加し、white/checker/auto mode、preview 生成、alpha 統計 JSON 出力を使えるようにした
+- [x] `DR-20260412-background-transparent-skill`: 既存画像の背景透明化用 repo-local skill `background-transparent` を追加し、非破壊保存と transparent PNG cutout の手順を定義した
+- [x] `DR-20260315-forma-skill-frontmatter`: `forma-character/SKILL.md` に YAML frontmatter を追加し、skill loader が読める構造へ戻した
 - [x] `DR-20260314-rename-to-forma-character`: canonical skill pack / config / public command 名を `Forma Character` / `forma-character-*` へ揃え、renamed pack で real ComfyUI / fake Blender verify を通した
 - [x] `DR-20260314-remove-legacy-compat-layer`: legacy compatibility skill pack と old config を削除し、`kyarakuri-comfy-blender-vrm` 単独で real ComfyUI / fake Blender verify を通した
 - [x] `DR-20260314-character-name-project-brief`: base image の対話入力で `character_name` を追加し、`outputs/<project-name>/brief.json` を保存するようにした

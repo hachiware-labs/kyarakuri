@@ -1,3 +1,8 @@
+---
+name: forma-character
+description: Repo-local canonical implementation skill pack for Forma Character commands built around local ComfyUI and Blender.
+---
+
 # Forma Character
 
 Repo-local canonical implementation skill pack for the public `forma-character-*` commands before moving them into a distributable skill.

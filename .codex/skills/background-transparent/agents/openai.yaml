@@ -1,0 +1,4 @@
+interface:
+  display_name: "Background Transparent"
+  short_description: "Make image backgrounds transparent"
+  default_prompt: "Use $background-transparent to remove this image background and save a transparent PNG."
